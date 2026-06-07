@@ -1,13 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Trung Gian Am Nhac</title>
+    <title>Independent City</title>
 </head>
 <body>
-    <h1>Trình phát nhạc của tôi</h1>
-    <audio controls>
-        <source src="https://drive.google.com/uc?id=1OJv0ElXhzYL5pbXjb2Gwz9IuugRSwyx7
-" type="audio/mpeg">
-    </audio>
+    <!-- Thêm tệp MP3 đã chuyển đổi link Google Drive của bạn vào đây -->
+    <audio id="bg-music" src="https://drive.google.com/uc?id=1OJv0ElXhzYL5pbXjb2Gwz9IuugRSwyx7
+" loop></audio>
+
+    <script>
+        const audio = document.getElementById('bg-music');
+
+        // Hàm cố gắng phát nhạc liên tục cho đến khi thành công
+        function tryAutoplay() {
+            audio.play().then(() => {
+                console.log("Phát nhạc thành công!");
+            }).catch(error => {
+                console.log("Trình duyệt đang chặn, chờ người dùng click...");
+            });
+        }
+
+        // Lắng nghe lệnh từ trang Chess.com hoặc khi người dùng click/cuộn trang
+        window.addEventListener('DOMContentLoaded', tryAutoplay);
+        window.parent.document.addEventListener('click', tryAutoplay); 
+        window.parent.document.addEventListener('keydown', tryAutoplay);
+        document.addEventListener('click', tryAutoplay);
+    </script>
 </body>
 </html>
